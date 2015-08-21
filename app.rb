@@ -7,7 +7,7 @@ require('pg')
 require('pry')
 require('launchy')
 
-DB = PG.connect({:dbname => "hair_salon_test"})
+DB = PG.connect({:dbname => "hair_salon"})
 
 get('/') do
   erb(:index)
