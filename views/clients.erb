@@ -1,0 +1,36 @@
+<center>
+  <h1>Hermoine's Magical Salon :: Current Clients</h1>
+  <h4>View the currently list of clients.</h4>
+</center>
+<h3>
+<b><u>Clients:</u><b>
+  <% if @clients.any? %>
+  <ol>
+    <% @clients.each() do |client| %>
+    <li><b><a href="/client/<%= client.id() %>"><%= client.last_name() %>, <%= client.first_name() %></a><br></b></li>
+    <% end %>
+  </ol>
+
+  <% else %>
+  <p>There are currently no clients at this time.</p>
+  <% end %>
+<br>
+<br>
+<form action='/clients' method="post">
+  <div class="form-group">
+    <label for="new_client">Add a new client:</label>
+    <input id="first_name" name="first_name" class="form-control" type="text" placeholder="Add first name here.">
+    <input id="last_name" name="last_name" class="form-control" type="text" placeholder="Add last name here.">
+    <input id="phone_number" name="phone_number" class="form-control" type="text" placeholder="Add phone number here (e.g. 5038675309).">
+    <label for="stylists_id">Select a Stylist</label>
+    <select id='stylists_id' name='stylists_id' type='text'>
+      <% @stylists.each() do |stylist| %>
+        <option value="<%= stylist.id()%>"> <%= stylist.last_name() %>, <%= stylist.first_name() %> </option>
+      <% end %>
+    </select>
+  </div>
+  <button type="submit" class="btn">Add Client</button>
+</form>
+</h3>
+<br>
+<a href='/'>Click here to return to the main salon page</a>

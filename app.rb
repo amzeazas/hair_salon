@@ -43,3 +43,15 @@ delete('/stylist/:id') do
   @stylist.delete()
   redirect('/stylists')
 end
+
+get('/clients') do
+  @clients = Client.all()
+  @stylists = Stylist.all()
+  erb(:clients)
+end
+
+post('/clients') do
+  client = Client.new({:first_name => params.fetch("first_name"), :last_name => params.fetch("last_name"), :phone_number => params.fetch("phone_number"), :stylists_id => params.fetch("stylists_id")})
+  client.save()
+  redirect('/clients')
+end
