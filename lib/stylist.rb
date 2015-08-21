@@ -1,5 +1,5 @@
 class Stylist
-  attr_reader(:first_name, :last_name, :phone_number, :id)
+  attr_reader(:first_name, :last_name, :phone_number, :id, :stylists_id)
 
   define_method(:initialize) do |attr|
     @first_name = attr.fetch(:first_name)
@@ -65,5 +65,19 @@ class Stylist
       end
     end
     found_stylist
+  end
+
+  define_method(:clients) do
+    list_clients = []
+    clients = DB.exec("SELECT * FROM clients WHERE stylists_id = #{self.id()};")
+    clients.each() do |client|
+      first_name = client.fetch("first_name")
+      last_name = client.fetch("last_name")
+      phone_number = client.fetch("phone_number")
+      id = client.fetch("id")
+      stylists_id = client.fetch("stylists_id").to_i()
+      list_clients.push(Client.new({:first_name => first_name, :last_name => last_name, :phone_number => phone_number, :id => id, :stylists_id => stylists_id}))
+    end
+    list_clients
   end
 end
