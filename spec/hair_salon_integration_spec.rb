@@ -16,3 +16,12 @@ describe('adding a new stylist', {:type => :feature}) do
     expect(page).to have_content('Current Stylists')
   end
 end
+
+describe('updating info for a stylist', {:type => :feature}) do
+  it('allows a user to view the details of a stylist and update any info') do
+    visit('/stylist/:id')
+    fill_in('phone_number', :with => '5038675309')
+    click_button('Update Info')
+    expect(page).to have_content('Current Stylists')
+  end
+end
