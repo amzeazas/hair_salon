@@ -19,4 +19,9 @@ describe(Client) do
       expect(test_client.phone_number()).to(eq("5038675309"))
     end
   end
+  describe('.all') do
+    it('is empty at first') do
+      expect(Client.all()).to(eq([]))
+    end
+  end
 end
