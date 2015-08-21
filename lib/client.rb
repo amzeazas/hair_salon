@@ -29,4 +29,27 @@ class Client
     result = DB.exec("INSERT INTO clients (first_name, last_name, phone_number) VALUES ('#{@first_name}', '#{@last_name}', '#{@phone_number}') RETURNING id;")
     @id = result.first().fetch("id").to_i()
   end
+
+  define_method(:update) do |attr|
+    @first_name = attr.fetch(:first_name)
+    @last_name = attr.fetch(:last_name)
+    @phone_number = attr.fetch(:phone_number)
+    @id = self.id()
+
+    if @first_name != "" && @last_name != "" && @phone_number != ""
+      DB.exec("UPDATE clients SET first_name = '#{@first_name}', last_name = '#{@last_name}', phone_number = '#{@phone_number}' WHERE id = #{@id};")
+    elsif @first_name != "" && @last_name != ""
+      DB.exec("UPDATE clients SET first_name = '#{@first_name}', last_name = '#{@last_name}' WHERE id = #{@id};")
+    elsif @first_name != "" && @phone_number != ""
+      DB.exec("UPDATE clients SET first_name = '#{@first_name}', phone_number = '#{@phone_number}' WHERE id = #{@id};")
+    elsif @last_name != "" && @phone_number != ""
+      DB.exec("UPDATE clients SET last_name = '#{@last_name}', phone_number = '#{@phone_number}' WHERE id = #{@id};")
+    elsif @first_name != ""
+      DB.exec("UPDATE clients SET first_name = '#{@first_name}' WHERE id = #{@id};")
+    elsif @last_name != ""
+      DB.exec("UPDATE clients SET last_name = '#{@last_name}' WHERE id = #{@id};")
+    else
+      DB.exec("UPDATE clients SET phone_number = '#{@phone_number}' WHERE id = #{@id};")
+    end
+  end
 end
