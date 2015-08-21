@@ -24,6 +24,13 @@ describe(Client) do
       expect(Client.all()).to(eq([]))
     end
   end
+  describe('#==') do
+    it('is the same client if it has the same name and phone number') do
+      client1 = Client.new({:first_name => "Bruce", :last_name => "Wayne", :phone_number => "5038675309", :id => nil})
+      client2 = Client.new({:first_name => "Bruce", :last_name => "Wayne", :phone_number => "5038675309", :id => nil})
+      expect(client1).to(eq(client2))
+    end
+  end
   describe('#save') do
     it('lets you save a client into the database') do
       client = Client.new({:first_name => "Bruce", :last_name => "Wayne", :phone_number => "5038675309", :id => nil})
