@@ -24,7 +24,7 @@ describe(Client) do
       expect(Client.all()).to(eq([]))
     end
   end
-  descirbe('#save') do
+  describe('#save') do
     it('lets you save a client into the database') do
       client = Client.new({:first_name => "Bruce", :last_name => "Wayne", :phone_number => "5038675309", :id => nil})
       client.save()

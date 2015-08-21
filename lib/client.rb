@@ -20,4 +20,9 @@ class Client
     end
     clients
   end
+
+  define_method(:save) do
+    result = DB.exec("INSERT INTO clients (first_name, last_name, phone_number) VALUES ('#{@first_name}', '#{@last_name}', '#{@phone_number}') RETURNING id;")
+    @id = result.first().fetch("id").to_i()
+  end
 end
