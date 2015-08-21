@@ -59,7 +59,6 @@ end
 get('/client/:id') do
   @client = Client.find(params.fetch("id").to_i())
   @stylists = Stylist.all()
-  @stylist = Stylist.find(params.fetch("stylists_id").to_i())
   erb(:client)
 end
 

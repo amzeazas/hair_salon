@@ -6,6 +6,11 @@
   Last name: <%= @client.last_name() %>
   <br>
   Phone number: <%= @client.phone_number() %>
+  <br>
+  Stylist:
+    <% @client.stylist().each() do |stylist| %>
+    <%= stylist.first_name() %> <%= stylist.last_name() %>
+    <% end %>
 </h3>
 
 <form action="/client/<%= @client.id() %>" method="post">
