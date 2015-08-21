@@ -1,0 +1,10 @@
+require('spec_helper')
+
+describe(Client) do
+  describe('#first_name') do
+    it('returns the first name of the client') do
+      test_client = Client.new({:first_name => "Bruce", :last_name => "Wayne", phone_number => "5038675309", :id => nil})
+      expect(test_client.first_name()).to(eq("Bruce"))
+    end
+  end
+end
