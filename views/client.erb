@@ -1,0 +1,36 @@
+<h1>Here are the details for this client:</h1>
+
+<h3>
+  First name: <%= @client.first_name() %>
+  <br>
+  Last name: <%= @client.last_name() %>
+  <br>
+  Phone number: <%= @client.phone_number() %>
+</h3>
+
+<form action="/client/<%= @client.id() %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label for="client">Update client info:</label>
+  <br>
+  <input id="first_name" name="first_name" type="text" placeholder="Update first name">
+  <br>
+  <input id="last_name" name="last_name" type="text" placeholder="Update last name">
+  <br>
+  <input id="phone_number" name="phone_number" type="text" placeholder="Update phone number">
+  <br>
+  <label for="stylists_id">Select a Stylist</label>
+  <select id='stylists_id' name='stylists_id' type='text'>
+    <% @stylists.each() do |stylist| %>
+      <option value="<%= stylist.id()%>"> <%= stylist.last_name() %>, <%= stylist.first_name() %> </option>
+    <% end %>
+  </select>
+  <button type="submit">Update</button>
+</form>
+<br>
+
+<form action='/client/<%= @client.id() %>' method='post'>
+  <input name='_method' type='hidden' value='delete'>
+
+  <button class='btn-danger' type='submit'>Delete</button>
+</form>
+<a href="/clients">Back</a>

@@ -55,3 +55,25 @@ post('/clients') do
   client.save()
   redirect('/clients')
 end
+
+get('/client/:id') do
+  @client = Client.find(params.fetch("id").to_i())
+    @stylists = Stylist.all()
+  erb(:client)
+end
+
+patch("/client/:id") do
+  first_name = params.fetch("first_name")
+  last_name = params.fetch("last_name")
+  phone_number = params.fetch("phone_number")
+  stylists_id = params.fetch("stylists_id")
+  @client = Client.find(params.fetch("id").to_i())
+  @client.update({:first_name => first_name, :last_name => last_name, :phone_number => phone_number, :stylists_id => stylists_id})
+  redirect('/clients')
+end
+
+delete('/client/:id') do
+  @client = Client.find(params.fetch("id").to_i())
+  @client.delete()
+  redirect('/clients')
+end

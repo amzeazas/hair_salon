@@ -52,3 +52,27 @@ describe('adding a new client', {:type => :feature}) do
     expect(page).to have_content('Current Clients')
   end
 end
+
+describe('updating info for a client', {:type => :feature}) do
+  it('allows a user to view the details of a client and update any info') do
+    visit('/')
+    click_link('Click here to view stylists')
+    fill_in('first_name', :with => 'Luna')
+    fill_in('last_name', :with => 'Lovegood')
+    fill_in('phone_number', :with => '2065552222')
+    click_button('Add Stylist')
+    visit('/')
+    click_link('Click here to view clients')
+    fill_in('first_name', :with => 'Harry')
+    fill_in('last_name', :with => 'Potter')
+    fill_in('phone_number', :with => '4259876543')
+    click_button('Add Client')
+    click_link('Potter, Harry')
+    fill_in('first_name', :with => '')
+    fill_in('last_name', :with => '')
+    fill_in('phone_number', :with => '5038675309')
+    select('Lovegood, Luna')
+    click_button('Update')
+    expect(page).to have_content('Current Clients')
+  end
+end
