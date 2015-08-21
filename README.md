@@ -1,6 +1,7 @@
 Hair Salon
 
-version 1.0, 21 August 2015 By Alexa Zeazas
+version 1.0, 21 August 2015
+By Alexa Zeazas
 
 Description This app allows hair salon owners to view, update, and delete stylists working in their salon. It also allows owners to view, update, and delete current clients and the stylists they work with.
 
