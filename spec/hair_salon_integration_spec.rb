@@ -19,9 +19,17 @@ end
 
 describe('updating info for a stylist', {:type => :feature}) do
   it('allows a user to view the details of a stylist and update any info') do
-    visit('/stylist/:id')
+    visit('/')
+    click_link('Click here to view stylists')
+    fill_in('first_name', :with => 'Luna')
+    fill_in('last_name', :with => 'Lovegood')
+    fill_in('phone_number', :with => '2065552222')
+    click_button('Add Stylist')
+    click_link('Lovegood, Luna')
+    fill_in('first_name', :with => '')
+    fill_in('last_name', :with => '')
     fill_in('phone_number', :with => '5038675309')
-    click_button('Update Info')
+    click_button('Update')
     expect(page).to have_content('Current Stylists')
   end
 end
